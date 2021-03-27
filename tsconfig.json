@@ -11,6 +11,12 @@
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
+    "paths": {
+      "ngx-mez-error-display": [
+        "dist/ngx-mez-error-display/ngx-mez-error-display",
+        "dist/ngx-mez-error-display"
+      ]
+    },
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
