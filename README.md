@@ -1,27 +1,43 @@
-# MetztliReactiveFormsErrorDisplay
+# Metztli Reactive Forms Error Display
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
+This package helps to display errors in Reactive Forms.
 
-## Development server
+## USage
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Just add a component `errdisplay` with the same formControlName as the form control you want to show errors.
 
-## Code scaffolding
+  <form [formGroup]="form">
+    <input formControlName="controlName"  />
+    <errdisplay formControlName="controlName">
+    </errdisplay>
+  </form>```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+If any Validator returns an error it will be shown in the place of the component.
 
-## Build
+For example if the `Validator.required` is used, then if the input is used and then deleted it will appear the message
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+<li>Error: required</li>
 
-## Running unit tests
+## Personalized Error Messages
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+You can use personalized error messages by passing them as parameters
 
-## Running end-to-end tests
+<errdisplay fromControlName="controlName"  [errorMessages]="{required:'message1'">
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+This example will show
 
-## Further help
+<li>message1</li>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+If the error 'required' is present.
+
+## Showing error messages using a templates
+
+You can use a personalized template for `errdisplay` using the directive `errorTemplate` inside of `errdisplay`.
+
+  <errdisplay  formControlName="controlName" >
+    <ng-template let-error [errorTemplate]>
+      template: {{error}}
+    </ng-template>
+  </errdisplay>
+
+All the error messages will be shown using the template for each one of them.
